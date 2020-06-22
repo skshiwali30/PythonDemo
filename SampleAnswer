@@ -1,0 +1,30 @@
+file1 = open("C:\\Users\\Anshu Kumar\\Desktop\\test.txt", "r")
+details = []
+for word in file1.read().split():
+    details.append(word)
+
+totalCandidate = int(details[0])
+candidate = dict()
+for i in range(1,totalCandidate + 1):
+    candidate.setdefault(details[i],0)
+index = totalCandidate + 1
+
+while index < len(details):
+    tmp = details[index]
+    index = index + 1
+    var1 = int(details[index])
+    index = index + 1
+    var2 = int(details[index])
+    if var2 is not 0:
+        amount = var1 // var2
+        index = index + 1
+    if index >= (len(details) - 1):
+        break
+
+    for key in range(index,index + var2):
+        if details[key] in candidate:
+            value = candidate[details[key]]
+            candidate[details[key]] = value + amount
+            index = index + 1
+
+print(candidate)
